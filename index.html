@@ -1,0 +1,25 @@
+<script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
+
+
+<div id="payment-form"></div>
+
+<script>
+//Инициализация виджета. Все параметры обязательные, кроме объекта customization.
+const checkout = new window.YooMoneyCheckoutWidget({
+    confirmation_token: 'ct-2b59c140-000f-5000-a000-12a251fecc9b', //Токен, который перед проведением оплаты нужно получить от ЮKassa
+    return_url: 'https://merchant.site', //Ссылка на страницу завершения оплаты
+
+    //Настройка виджета (при необходимости)
+    error_callback: function(error) {
+        //Обработка ошибок инициализации
+    }
+});
+
+   checkout.on('complete', () => {
+        alert('complete')
+        checkout.destroy();
+    });
+  
+//Отображение платежной формы в контейнере
+checkout.render('payment-form');
+</script>
